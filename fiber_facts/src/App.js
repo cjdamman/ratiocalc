@@ -4,50 +4,44 @@ import MoviesList from './components/MoviesList';
 import './App.css';
 
 function App() {
-  const dummyMovies = [
-    {
-      id: 1,
-      title: 'Some Dummy Movie',
-      openingText: 'This is the opening text of the movie',
-      releaseDate: '2021-05-18',
-    },
-    {
-      id: 2,
-      title: 'Some Dummy Movie 2',
-      openingText: 'This is the second opening text of the movie',
-      releaseDate: '2021-05-19',
-    },
-  ];
+
   const [nutrition, setNutrition] = useState([]);
+  const [inputs, setInputs] = useState([]);
 
   async function fetchNutritionHandler() {
-    const response = await fetch('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=dvHXrelaUtReddQBiicnlA0lFCApcAjTPgv7I7mm&query=Cheddar%20Cheese');
+    const response = await fetch('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=dvHXrelaUtReddQBiicnlA0lFCApcAjTPgv7I7mm&query='+inputs);
     const data = await response.json();
     const transformedNutrition = await data.foods.map((nutritionData) => {
       return {
         openingText: nutritionData.description,
         title: nutritionData.brandOwner,
         id: nutritionData.fdcid,
-        nutrients: [...nutritionData.foodNutrients.map(nut => [nut.nutrientName +': '+ nut.value+', '])],  
-        // avengers.map(avenger => avenger.name);
+        nutrients: [...nutritionData.foodNutrients.map(nut => [nut.nutrientName +': '+ nut.value+', '])]  }
 
-        // nutrients2: [...nutritionData.foodNutrients.nutrientName]
-      }
     })
+    setNutrition(transformedNutrition)}
     // console.log(transformedNutrition)
-    console.log(data.foods)
-    setNutrition(transformedNutrition)
+    // console.log(data.foods)
 
-
-
-
-
+  
+  const searchFoodHandler = (event) => {
+    console.log(inputs)
+    setInputs(event.target.value)
   }
+
+
 
   return (
     <React.Fragment>
       <section>
-        <button onClick={fetchNutritionHandler}>Fetch Movies</button>
+        <button onClick={fetchNutritionHandler}>Fetch Nutrition Data</button>
+      
+
+
+    <input value={[inputs]}
+        onChange={searchFoodHandler} 
+        type="text"/>
+
       </section>
       <section>
         <MoviesList movies={nutrition} />
