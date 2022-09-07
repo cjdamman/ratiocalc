@@ -27,7 +27,11 @@ function App() {
       return {
         openingText: nutritionData.description,
         title: nutritionData.brandOwner,
-        id: nutritionData.fdcid
+        id: nutritionData.fdcid,
+        nutrients: [...nutritionData.foodNutrients.map(nut => [nut.nutrientName +': '+ nut.value+', '])],  
+        // avengers.map(avenger => avenger.name);
+
+        // nutrients2: [...nutritionData.foodNutrients.nutrientName]
       }
     })
     // console.log(transformedNutrition)
