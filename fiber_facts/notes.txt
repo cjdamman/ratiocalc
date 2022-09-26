@@ -1,0 +1,5 @@
+total carbohydrate to fiber ratio : anything > 10 is red (bad), 5-10 yellow, anything < 5 is green -> "Fiber, total dietary" "Carbohydrate, by difference"
+sodium to potassium ratio -> "Sodium, Na" , "Potassium, K"
+saturated fat to total fat ratio -> "Total lipid (fat)" , "Fatty acids, total saturated" , "Fatty acids, total monounsaturated", "Fatty acids, total polyunsaturated"
+
+classify by color the output 
