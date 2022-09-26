@@ -10,10 +10,11 @@ const MovieList = (props) => {
         <Movie
           key={movie.id}
           title={( movie.carbs / movie.fiber)}
-          openingText={movie.nutrients}
-          x={movie.sat_fat}
-          
-          releaseDate={movie.carbs}
+          openingText={( movie.sodium / movie.potassium)}
+          x={(movie.sat_fat / movie.tot_fat)}
+          y={movie.nutrients}
+          z={movie.openingText}
+          W={movie.title}
         />
       ))}
     </ul>

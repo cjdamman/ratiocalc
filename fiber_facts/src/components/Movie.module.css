@@ -6,16 +6,37 @@
   border-radius: 12px;
   text-align: center;
   color: white;
+  align-self: center;
 }
+
+.tabley {
+  border: 3px solid white;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-left: auto;
+  margin-RIGHT: auto;
+}
+
 
 .green {
   font-size: 2rem;
     color: #1ca83b;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 
-.purp {
+.red {
   font-size: 2rem;
     color: #e61336;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.yellow {
+  font-size: 2rem;
+    color: #fcff42;
+    border: 1px solid white;
+    border-radius: 10px;
 }
 
 .movie h3 {
