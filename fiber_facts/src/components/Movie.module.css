@@ -20,14 +20,31 @@
 
 .green {
   font-size: 2rem;
-    color: #1ca83b;
+    color: #0b7c2d;
     border: 1px solid white;
     border-radius: 10px;
 }
 
+.lightgreen {
+  font-size: 2rem;
+    color: #b2db51;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+
 .red {
   font-size: 2rem;
     color: #e61336;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+
+
+.purple {
+  font-size: 2rem;
+    color: #230052;
     border: 1px solid white;
     border-radius: 10px;
 }

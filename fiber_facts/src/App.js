@@ -11,31 +11,45 @@ function App() {
   async function fetchNutritionHandler() {
     const response = await fetch('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=dvHXrelaUtReddQBiicnlA0lFCApcAjTPgv7I7mm&query='+inputs);
     const data = await response.json();
+    console.log(data.foods)
     const transformedNutrition = await data.foods.map((nutritionData) => {
- 
-      return {
+      // i want to loop through the values in nuts and create an object with a vernacular name as the key and foodNutrients.value as the key, and if nuts isn't in there just make the value 0
+    const nuts = ["Fiber, total dietary", "Carbohydrate, by difference", "Sodium, Na", "Total lipid (fat)",  "Fatty acids, total monounsaturated", "Fatty acids, total polyunsaturated"]
+    const filter = nutritionData.foodNutrients.filter(i => nuts.includes(i.nutrientName))
+    const funk = filter.map(x => x.nutrientName)
+    const funk1 = filter.map(x => x.value)
+    
+
+    return {
         openingText: nutritionData.description,
         title: nutritionData.brandOwner,
         id: nutritionData.fdcid,
         nutrients: [...nutritionData.foodNutrients.map(nut => [nut.nutrientName +': '+ nut.value+', '])],
         // nutrients:  [...nutritionData.foodNutrients.map(nut => [nut.nutrientName , nut.value])][0][0],
+        nuts2: {
         fiber:  [...nutritionData.foodNutrients.filter(nut  => nut.nutrientName==="Fiber, total dietary"), 1][0].value ,
         carbs: [...nutritionData.foodNutrients.filter(nut  => nut.nutrientName==="Carbohydrate, by difference"), 1][0].value,
         sodium: [...nutritionData.foodNutrients.filter(nut  => nut.nutrientName==="Sodium, Na"), 1][0].value, 
-        potassium: [...nutritionData.foodNutrients.filter(nut  => nut.nutrientName==="Potassium, K"), 1][0].value ,
+        potassium: [...nutritionData.foodNutrients.filter(nut  => nut.nutrientName==="Potassium, K"), 1][0].value,
         tot_fat: [...nutritionData.foodNutrients.filter(nut  => nut.nutrientName==="Total lipid (fat)"), 1][0].value,
-        sat_fat: [...nutritionData.foodNutrients.filter(nut  => nut.nutrientName==="Fatty acids, total saturated"), 1][0].value
-
-        // .filter(nut.nutrientName==="Total lipid (fat)")
-      
+        sat_fat: [...nutritionData.foodNutrients.filter(nut  => nut.nutrientName==="Fatty acids, total saturated"), 1][0].value,
+        trans_fat: [...nutritionData.foodNutrients.filter(nut  => nut.nutrientName==="Fatty acids, total trans"), 1][0].value,
+        mono_fat: [...nutritionData.foodNutrients.filter(nut  => nut.nutrientName==="Fatty acids, total monounsaturated"), 1][0].value,
+        poly_fat: [...nutritionData.foodNutrients.filter(nut  => nut.nutrientName==="Fatty acids, total polyunsaturated"), 1][0].value
       }
         
+        ,
+        filtered: [...nutritionData.foodNutrients.map(nut => [[nut.nutrientName , nut.value]])],
+        filtered2: [...nutritionData.foodNutrients.map(nut => { return [nut.nutrientName , nut.value]})],
+        // filtered3: nutritionData.foodNutrients.filter(i => nuts.includes(i.nutrientName))
+      
+      }
+       
     })
-
+    
     console.log(transformedNutrition)
     setNutrition(transformedNutrition)}
-    // console.log(transformedNutrition)
-    // console.log(data.foods)
+
 
 
 
