@@ -9,7 +9,7 @@ function App() {
   const [inputs, setInputs] = useState([]);
 
   async function fetchNutritionHandler() {
-    const response = await fetch('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=dvHXrelaUtReddQBiicnlA0lFCApcAjTPgv7I7mm&query='+inputs);
+    const response = await fetch('https://api.nal.usda.gov/fdc/v1/foods/search?api_key=dvHXrelaUtReddQBiicnlA0lFCApcAjTPgv7I7mm&dataType=Branded,Survey%20%28FNDDS%29&sortBy=dataType.keyword&sortOrder=desc&query='+inputs);
     const data = await response.json();
     console.log(data.foods)
     const transformedNutrition = await data.foods.map((nutritionData) => {
