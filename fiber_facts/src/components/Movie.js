@@ -4,7 +4,7 @@ import classes from './Movie.module.css';
 
 const Movie = (props) => {
   let FibRatio =  props.FibRatio || 0
-  let FatRatio =  props.FatRatio*4 || 0
+  let FatRatio =  props.FatRatio*3.75 || 0
   let SaltRatio =  props.SaltRatio*5 || 0
   const redStyle = { color: 'red' };
   const yellowStyle = { color: 'yellow' };
@@ -15,7 +15,7 @@ const Movie = (props) => {
       <p><h3 style={(FibRatio) > 10 ? redStyle : (FibRatio) > 5 ? yellowStyle  : (FibRatio) < 1 ? greenStyle  : greenStyle }>{(FibRatio) > 10 ? "Consume Sparingly" : (FibRatio) > 5 ? "Consume Moderately" : (FibRatio) < 1 ? "Consume Freely" : "Consume Freely"}</h3></p>
       <table className={classes.tabley} >
         <th className={classes.tabley} >{`Carbs ${props.carbs}${props.carbsUnitName} / Fiber ${props.fiber}${props.fiberUnitName} `} </th>
-        <th className={classes.tabley} >{`(Fat ${props.tot_fat}${props.tot_fatUnitName} / UnsatFat ${Math.round((props.tot_fat - (props.trans_fat + props.sat_fat))*100)/100}${props.tot_fatUnitName}) * 4`} </th>
+        <th className={classes.tabley} >{`(Fat ${props.tot_fat}${props.tot_fatUnitName} / UnsatFat ${Math.round((props.tot_fat - (props.trans_fat + props.sat_fat))*100)/100}${props.tot_fatUnitName}) * 3.75`} </th>
         <tr>
           <td className={(FibRatio) > 10 ? classes.red : (FibRatio) > 5 ? classes.yellow : (FibRatio) < 1 ? classes.purple : classes.green}> {Math.round(FibRatio)}</td>
           <td className={(FatRatio) > 10 ? classes.red : (FatRatio) > 5 ? classes.yellow : (FatRatio) < 1 ? classes.purple : classes.green}> {Math.round(FatRatio)}</td>
